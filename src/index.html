@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Hello, world!</title>
+  </head>
+    <body>
+        <div id = container>
+            <div class="left-half">
+                <button id="citySearch" type="button"><img src="../logos\64x64\search.png"></button>
+                <b>
+                    <input type="text" class="city_name"  placeholder="Search for places ..."> 
+                </b>
+                <!-- <button id="cancelSearch"><img src="logos\64x64\cancel1.png"></button> -->
+                <div class="cityInfo">
+                    <img src="" id = weatherLogo>
+                    <h1 class="cityTemp"></h1>
+                    <ul>
+                        <li class="weatherDescription"></li>
+                        <li class="feel_like"></li>
+                        <li class="visibility"></li>
+                    </ul>
+                    <h1 class="cityInfo_h1">City</h1>
+                    <img src="" class="countryFlag">
+                </div>
+            </div>
+            <div class="right-half">
+                <div id =temp>
+                    <button id="btn-celcius">C</button>       
+                    <button id="btn-faren">F</button>
+                </div>
+                <!-- <div class="weeks">
+                    <div id="sun">
+                        <p id="temp-7">7</p>
+                    </div>
+                    <div id="mon">
+                        <p id="temp-1">1</p>
+                    </div>
+                    <div id="tues">
+                        <p id="temp-2">2</p>
+                    </div>
+                    <div id="wed">
+                        <p id="temp">3</p>
+                    </div>
+                    <div id="thr">
+                        <p id="temp">4</p>
+                    </div>
+                    <div id="frid">
+                        <p id="temp">5</p>
+                    </div>
+                    <div id="sat">
+                        <p id="temp">6</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    <script src="script.js"> </script>
+    </body>
+</html>

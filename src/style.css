@@ -1,0 +1,92 @@
+.left-half{
+    width: 25%;
+    background-color: rgb(255, 255, 255);
+    height: 93vh;  
+    float:left;    
+}
+.right-half{
+    background-color: rgb(232, 235, 231);
+    float: right;
+    width: 75%;
+    height: 93vh;  
+}
+#container{
+    display: flex;
+    overflow:hidden;
+    padding: 1.5%;
+    border-radius: 15px;
+    perspective: 1px;
+}
+body{
+    padding:0;
+    margin:0;
+    background-color: #145369;
+}
+.cityInfo{
+    margin: 0px 0px 0px 10px;
+    width: 95%;
+    display: inline-block;
+    text-align: center;
+}
+
+.city_name{
+    padding: 5px;
+    /* margin: 5%; */
+    /* margin-left: 10%; */
+    align-items: center;
+    border: 1px;
+    border-radius: 10px;
+    background-color: #ecf1f3;
+}
+.city_name::-webkit-input-placeholder {
+    color: black;
+    font-weight: 500;
+    font: status-bar;
+}
+#citySearch{
+    color: white;
+    margin-left: 35px;
+    margin-right: 5px;
+    margin-top: 16px;
+    width: 4ch;
+    height: 4ch;
+    border-radius: 20px;
+    border-width: 1px;
+}
+#citySearch:hover{
+    background-color: aqua;
+}
+/* #cancelSearch{
+    color: white;
+    margin-left: 5px;
+    margin-top: 16px;
+    width: 4ch;
+    height: 4ch;
+    border-radius: 2px;
+    border-width: 1px;
+}
+#cancelSearch:hover{
+    background-color: red;
+} */
+
+#temp{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding: 1%;
+}
+.weeks{
+    width: 10%;
+    height: 20%;
+    display: inline-flex;
+    list-style: none;
+    margin: 0; 
+    background: deepskyblue;
+    }
+    
+.weeks div{
+    display: flex;
+    padding: 10%;
+    padding: 1em;
+    color: white;
+}
