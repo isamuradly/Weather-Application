@@ -23,6 +23,7 @@ body{
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
     background-size: 100% 100%; */
+    background-size: cover;
     background-image: url('https://source.unsplash.com/1600x900/?landscape');
 
 }
