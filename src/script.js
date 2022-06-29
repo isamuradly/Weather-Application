@@ -9,43 +9,53 @@ const descrInput = document.querySelector('.weatherDescription');
 const feelLikeInput = document.querySelector('.feel_like');
 const visibilityInput = document.querySelector('.visibility');
 const flag = document.querySelector('.countryFlag');
+const wind = document.querySelector('.wind_stats');
+const humidity = document.querySelector('.humidity_stats');
+const direction = document.querySelector('.direction_stats');
+const dailyInfo = document.querySelector('.extra_daily_info');
+const container = document.querySelector('#container');
 
 
-citySearchBtn.addEventListener('click', function (){
+citySearchBtn.addEventListener("click", function (){
     const cityName = document.querySelector('.city_name').value;
     const API = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric`;
     
     fetch(API)
     .then(response => {
-        return response.json();
+        if (response.ok){
+            return response.json();
+        }
+        else{
+            throw new Error(response.status);
+        }
     })
     .then(data => {
-        let iconId = data['weather'][0]['icon'];
-        icon.src = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
-        cityInput.textContent = `${data['name']}, ${data['sys']['country']}`;
-        console.log(data['sys']['country']);
-        flag.src= `../logos/64x64/city_flags/${data['sys']['country']}.png`;
-        const temp = `${data['main']['temp']}`;
-        cityTemp.textContent = `${temp.slice(0,2)} °C`;
-        descrInput.textContent = `Description: ${data['weather'][0]['description']}`;
-        feelLikeInput.textContent = `Feels like : ${data['main']['feels_like']} °C`;
-        visibilityInput.textContent = `Visibility : ${data['visibility']/1000} km`;
-
-
-        console.log(data);
-        console.log(`Wind directs to ${(data['wind']['speed'])} m/s ${findWindDirection(data['wind']['deg'])}`);
+            let iconId = data['weather'][0]['icon'];
+            icon.src = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
+            cityInput.textContent = `${data['name']}, ${data['sys']['country']}`;
+            console.log(data['sys']['country']);
+            const temp = `${data['main']['temp']}`;
+            cityTemp.textContent = `${temp.slice(0,2)} °C`;
+            descrInput.textContent = `Description: ${data['weather'][0]['description']}`;
+            feelLikeInput.textContent = `Feels like : ${data['main']['feels_like']} °C`;
+            visibilityInput.textContent = `Visibility : ${data['visibility']/1000} km`;
+            wind.textContent = `Wind : ${(data['wind']['speed'])} km/h`;
+            humidity.textContent = `Humidity: ${(data['main']['humidity'])} %`;
+            direction.textContent = `${findWindDirection(data['wind']['deg'])}`;
+            document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${cityName}')`
+            dailyInfo.style.display = 'flex';
+        
     })
-    .catch(response =>{
-        if (cityName == ""){
+    .catch(error =>{
+        if (cityName === ""){
             alert("Please include city name!");
         }
-        // fix with alert instead of console output
-        if(response.status == 404){
-            alert('Not found!');
+        else if(error.message == 404){
+            alert('City not found. Please include correct city name');
         }
     })
-})
-
+}
+)
 
 
 function findWindDirection(temp){
@@ -100,5 +110,9 @@ function findWindDirection(temp){
     else if (temp >=330 && temp <= 340){
         return 'N/NW';
     }
+    else{
+        return 'NA';
+    }
     
 }
+

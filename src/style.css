@@ -1,73 +1,83 @@
-.left-half{
+.panel{
     width: 25%;
-    background-color: rgb(255, 255, 255);
-    height: 93vh;  
-    float:left;    
+    background-color: #c9d9daa9;
+    color: rgb(57, 53, 53);
+    border-radius: 30px;
+    padding: 2em;
+    margin-left: 35%;
+    margin-top: 1%;
+
 }
-.right-half{
-    background-color: rgb(232, 235, 231);
-    float: right;
-    width: 75%;
-    height: 93vh;  
+.panel:hover{
+    background-color: #fff;
 }
 #container{
     display: flex;
-    overflow:hidden;
     padding: 1.5%;
     border-radius: 15px;
     perspective: 1px;
 }
 body{
-    padding:0;
-    margin:0;
-    background-color: #145369;
+    /* background-position: 0px 0px;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%; */
+    background-image: url('https://source.unsplash.com/1600x900/?landscape');
+
+}
+.cityTemp{
+    margin-top: -5%;
 }
 .cityInfo{
-    margin: 0px 0px 0px 10px;
+    margin: -5px 0px 0px 5x;
     width: 95%;
-    display: inline-block;
+    display: block;
     text-align: center;
 }
 
 .city_name{
     padding: 5px;
-    /* margin: 5%; */
-    /* margin-left: 10%; */
     align-items: center;
     border: 1px;
     border-radius: 10px;
     background-color: #ecf1f3;
 }
-.city_name::-webkit-input-placeholder {
-    color: black;
-    font-weight: 500;
-    font: status-bar;
-}
+
 #citySearch{
-    color: white;
+    color: transparent;
     margin-left: 35px;
     margin-right: 5px;
     margin-top: 16px;
     width: 4ch;
     height: 4ch;
     border-radius: 20px;
-    border-width: 1px;
+    border-width: 0px;
 }
 #citySearch:hover{
-    background-color: aqua;
+    background-color: rgb(130, 219, 176);
 }
-/* #cancelSearch{
-    color: white;
-    margin-left: 5px;
-    margin-top: 16px;
-    width: 4ch;
-    height: 4ch;
-    border-radius: 2px;
-    border-width: 1px;
+.extra_daily_info{
+    display: none;
+    justify-content: space-between;
+    margin-top: 7.5%;
 }
-#cancelSearch:hover{
-    background-color: red;
-} */
+.stat{
+    /* margin-left: 5%;
+    margin-top: 5%; */
+    text-align: center;
+} 
+.stat:hover{
+    font-weight:bold;
+    text-decoration: double;
+}
+
+.cityFlag{
+    margin: 0px 0px 0px 19px;
+    width: 95%;
+    display: inline-block;
+    text-align: center;
+}
 
 #temp{
     display: flex;
