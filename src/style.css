@@ -31,12 +31,18 @@ body{
     margin-top: -5%;
 }
 .cityInfo{
-    margin: -5px 0px 0px 5x;
+    margin: -5px 0px 0px 5px;
     width: 95%;
     display: block;
     text-align: center;
 }
-
+#showGraphBtn{
+    margin: -5px 0px 0px 40%;
+    /* width: 95%; */
+    display: block;
+    text-align: center;
+    left: 50%;
+}
 .city_name{
     padding: 5px;
     align-items: center;
@@ -76,7 +82,7 @@ body{
 .cityFlag{
     margin: 0px 0px 0px 19px;
     width: 95%;
-    display: inline-block;
+    display: -ms-inline-flexbox;
     text-align: center;
 }
 
@@ -100,4 +106,16 @@ body{
     padding: 10%;
     padding: 1em;
     color: white;
+}
+
+#lineChart{
+    width: 90%;
+    height: 70%;
+    display: none;
+    margin-left: 5%;
+}
+#showGraphBtn{
+    border-radius: 10%;
+    border-width: 1.5px;
+    display: none;
 }

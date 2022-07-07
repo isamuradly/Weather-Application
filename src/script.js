@@ -16,7 +16,13 @@ const dailyInfo = document.querySelector('.extra_daily_info');
 const container = document.querySelector('#container');
 
 
-citySearchBtn.addEventListener("click", function (){
+const graphBtn = document.getElementById("showGraphBtn");
+const graphLine = document.getElementById("lineChart");
+const closeBtn = document.getElementById("closeChartBtn");
+
+let myChart =null;
+
+function fetchCityInfo(){ 
     const cityName = document.querySelector('.city_name').value;
     const API = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric`;
     
@@ -33,7 +39,6 @@ citySearchBtn.addEventListener("click", function (){
             let iconId = data['weather'][0]['icon'];
             icon.src = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
             cityInput.textContent = `${data['name']}, ${data['sys']['country']}`;
-            console.log(data['sys']['country']);
             const temp = `${data['main']['temp']}`;
             cityTemp.textContent = `${temp.slice(0,2)} °C`;
             descrInput.textContent = `Description: ${data['weather'][0]['description']}`;
@@ -44,6 +49,11 @@ citySearchBtn.addEventListener("click", function (){
             direction.textContent = `${findWindDirection(data['wind']['deg'])}`;
             document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${cityName}')`
             dailyInfo.style.display = 'flex';
+            graphBtn.style.display = 'block';
+
+            window.localStorage.setItem('lat', data['coord']['lat']);
+            window.localStorage.setItem('lon', data['coord']['lon']);
+          
         
     })
     .catch(error =>{
@@ -53,9 +63,21 @@ citySearchBtn.addEventListener("click", function (){
         else if(error.message == 404){
             alert('City not found. Please include correct city name');
         }
-    })
+    }) 
 }
-)
+citySearchBtn.addEventListener("click", fetchCityInfo);
+
+window.onload = showGraph;
+function showGraph(){
+    console.log("graphBtn called")
+    let lat = localStorage.getItem('lat');
+    let lon = localStorage.getItem('lon');
+    graphLine.style.display = 'block';
+    graphLine.style.backgroundColor = 'white';
+    container.style.display = 'none'
+    hourlyAPICall(lat, lon);
+}
+graphBtn.addEventListener("click", showGraph);
 
 
 function findWindDirection(temp){
@@ -115,4 +137,74 @@ function findWindDirection(temp){
     }
     
 }
+
+
+
+function hourlyAPICall(lat, lon){
+    const hourlyAPI = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m`
+    fetch(hourlyAPI)
+    .then(response =>{
+        if (response.ok){
+            return response.json();
+        }
+        else{
+            throw new Error(response.status);
+        }
+    })
+    .then(data=>{
+        lineGraph(data);
+
+    })
+    .catch(error=>{
+        console.log('fcked' + error);
+    }
+    )
+}
+
+function lineGraph(data) {
+
+    const labels = [];
+    for (let index = 0; index < 24; index++) {
+        labels.push((data['hourly']['time'][index].slice(11)));
+    }
+  
+    const stats = {
+      labels: labels,
+      datasets: [{
+        label: 'Hourly Weather Cart',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [],
+      }]
+    };
+
+    for (let index = 0; index < 24; index++) {
+        stats['datasets'][0]['data'].push(data['hourly']['temperature_2m'][index]);
+    }
+    
+  
+    const config = {
+      type: 'line',
+      data: stats,
+      options: {}
+    };
+
+    if (myChart != null){
+        myChart.destroy();
+    }
+
+    myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    ); 
+
+    window.localStorage.setItem("chart", myChart);    
+}
+
+function hideGraph(){
+    container.style.display = 'flex';
+    graphLine.style.display = 'none';
+}
+window.onload = hideGraph;
+closeBtn.addEventListener('click', hideGraph)
 

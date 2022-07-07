@@ -12,7 +12,6 @@
     </head>
     <body>
         <div id = container>
-           
             <div class="panel">
                 <button id="citySearch" type="button"><img src="../logos\64x64\search.png"></button>
                 <b>
@@ -45,10 +44,19 @@
                 </div>
                 <div class="cityFlag">
                     <h1 class="cityInfo_h1">City</h1>
+                    <button id="showGraphBtn">Show</button>
                 </div>
+                
             </div>
+
+            
+        </div>
+        <div id="lineChart">
+            <canvas id="myChart"></canvas>
+            <button id="closeChartBtn">Close</button>
         </div>
     <script src="script.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     </body>
 </html>
