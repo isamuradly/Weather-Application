@@ -3,9 +3,9 @@
     background-color: #c9d9daa9;
     color: rgb(57, 53, 53);
     border-radius: 30px;
-    padding: 2em;
+    padding: 1em;
     margin-left: 35%;
-    margin-top: 1%;
+    /* margin-top: 0.1%; */
 
 }
 .panel:hover{
@@ -119,3 +119,14 @@ body{
     border-width: 1.5px;
     display: none;
 }
+
+#closeChartBtn{
+    margin-left: 95%;
+    border-radius: 25px;
+    border-width: .5px;
+}
+
+#closeChartBtn:hover{
+    background-color: rgb(223, 148, 148);
+}
+
